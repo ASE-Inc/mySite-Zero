@@ -1,0 +1,19 @@
+{
+  "name": "Abhishek Munie | The Official Domain",
+  "description": "Get latest updates of Abhishek Munie ",
+  "version": "1",
+  "app": {
+    "urls": [
+      "*://abhishekmunie.com"
+    ],
+    "launch": {
+      "web_url": "http://abhishekmunie.com/"
+    }
+  },
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [
+    "notifications"
+  ]
+}
