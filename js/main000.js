@@ -462,6 +462,21 @@ if(config.enable.twitter){
             }
         });
     }(document,"script","twitter-wjs"));
+    
+    mySite.user.twitter={
+        logout:function(){
+        //twttr.anywhere.signOut();
+        },
+        refresh:function(){
+            /*$("#twitter-connect-placeholder").html("");
+             if(mySite.user.twitter.currentUser){
+             $("#twitter-connect-placeholder").append("Logged in as " + "<img src='" + mySite.user.twitter.currentUser.data('profile_image_url') + "'/>" + " " + mySite.user.twitter.currentUser.data('screen_name') +'<button type="button" class="btn" onclick=" mySite.user.twitter.logout();">Sign out of Twitter</button>');
+             }else{
+             mySite.user.twitter.T("#twitter-connect-placeholder").connectButton();
+             };*/
+            twttr.widgets.load();
+        }
+    };
     // Define our custom Twitter event hanlders
     function clickEventToAnalytics(intent_event){
         if(intent_event){
@@ -492,20 +507,6 @@ if(config.enable.twitter){
     }
     // Wait for the asynchronous resources to load
     twttr.ready(function(twttr){
-        mySite.user.twitter={
-            logout:function(){
-            //twttr.anywhere.signOut();
-            },
-            refresh:function(){
-                /*$("#twitter-connect-placeholder").html("");
-                 if(mySite.user.twitter.currentUser){
-                 $("#twitter-connect-placeholder").append("Logged in as " + "<img src='" + mySite.user.twitter.currentUser.data('profile_image_url') + "'/>" + " " + mySite.user.twitter.currentUser.data('screen_name') +'<button type="button" class="btn" onclick=" mySite.user.twitter.logout();">Sign out of Twitter</button>');
-                 }else{
-                 mySite.user.twitter.T("#twitter-connect-placeholder").connectButton();
-                 };*/
-                twttr.widgets.load();
-            }
-        };
         /*twttr.anywhere(function(T){
          mySite.user.twitter.T=T;
          T.hovercards();
