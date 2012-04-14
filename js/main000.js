@@ -1296,7 +1296,7 @@ mySite.BlobWorker.prototype=function(){
                 $this.find("a.lightbox").lightBox();
             } catch(e){}
             try{
-                if(Modernizr.canvas&&mySite.location.params.serviceMode){
+                if(Modernizr.canvas){
                     $this.find("#TopBanner").paintTwinklingStars({
                         className:"SnowFall"
                     });
