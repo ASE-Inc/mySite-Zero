@@ -1388,7 +1388,7 @@ mySite.BlobWorker.prototype=function(){
                             onError(e);
                         }
                     },false);
-                    this.ajaxloader.addEventListener('error',function(event){
+                    this.ajaxloader.addEventListener('error',function(e){
                         console.log(['ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message].join(''));
                         onError(event);
                     },false);
