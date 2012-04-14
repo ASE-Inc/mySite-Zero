@@ -788,7 +788,7 @@ mySite.BlobWorker.prototype=function(){
                     "left":(el[0].offsetLeft+el[0].offsetWidth)+"px"
                 });
             }
-            $(">li>a",this).children().not(".lavalampback").hover(function(){
+            $(">li>a",this).hover(function(){
                 THIS.setCurrent($(this.parentElement));
             },function(){});
             $(this).hover(function(){},function(){
