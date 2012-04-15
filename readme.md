@@ -2,7 +2,7 @@
 
 mySite:Zero is a zero point to start personal website. I has been designed to use the best of lastest web standard and power [GitHub:pages](https://pages.github.com).
 
-For details check [wikis](https://github.com/abhishekmunie/mySite-Zero/wiki).
+For details check [wikis](https://github.com/mySite/mySite-Zero/wiki).
 
 
 ## Quick start
