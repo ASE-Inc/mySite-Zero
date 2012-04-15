@@ -12,6 +12,7 @@
 
 # OS or Editor folders
 .DS_Store
+Icon
 Thumbs.db
 .cache
 .project
