@@ -1,5 +1,10 @@
 # [mySite:Zero](http://abhishekmunie.com/mySite/Zero)
 
+mySite:Zero is a zero point to start personal website. I has been designed to use the best of lastest web standard and power [GitHub:pages](https://pages.github.com).
+
+For details check [wikis](https://github.com/mySite/mySite-Zero/wiki).
+
+
 ## Quick start
 
 Clone the git repo - `git clone git://github.com/mySite/mySite-Zero.git` - or [download it](https://github.com/mySite/mySite-Zero/zipball/master)
