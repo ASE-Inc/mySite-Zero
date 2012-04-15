@@ -963,7 +963,7 @@ mySite.BlobWorker.prototype=function(){
                     fps=0;
                 },1000);
                 $(document).on('mySite:ajaxcompleted',function(){
-                    if(!document.contains(THIS)){
+                    if(!document.body.contains(THIS)){
                         window.cancelAnimationFrame(THIS.draw_interval_id);
                         mySite.wipeObject(THIS);
                     }
