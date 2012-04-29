@@ -1,17 +1,5 @@
 @charset "utf-8";
 
-@font-face {
-    font-family: 'CC-ICONS';
-    font-style: normal;
-    font-weight: normal;
-    src: url('http://mirrors.creativecommons.org/presskit/cc-icons.ttf') format('truetype');
-}
-
-span.cc {
-    font-family: 'CC-ICONS';
-    color: #ABB3AC;
-}
-
 /* HTML5 Boilerplate  */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,
 del,dfn,em, img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,
@@ -380,7 +368,7 @@ body {
 .goldenBox>div.dummy,.goldenBox_flexi>div.dummy{margin-top:61.80339887498948482045868343656381177203091798057628621354%;}
 .goldenBox_Vertical>div.dummy,.goldenBox_Vertical_flexi>div.dummy{margin-top:161.80339887498948482045868343656381177203091798057628621354%;}
 .goldenBox>div.content,.goldenBox>div:not(.dummy),.goldenBox_Vertical>div.content,.goldenBox_Vertical>div:not(.dummy){position:absolute;top:0;right:0;bottom:0;left:0;}
-.goldenBox>div.overflow_content,.goldenBox_Vertical>div.overflow_content,{position:absolute;top:0;left:0;}
+.goldenBox>div.overflow_content,.goldenBox_Vertical>div.overflow_content{position:absolute;top:0;left:0;}
 .button_box{
     -webkit-box-shadow: rgba(0, 0, 0, .4) 0 1px 3px;
     -o-box-shadow: rgba(0, 0, 0, .4) 0 1px 3px;
@@ -1474,10 +1462,9 @@ The expand / collapse button */
     @page { margin: 0.5cm; }
     p, h2, h3 { orphans: 3; widows: 3; }
 }
-.printer_friendly{
-    * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; }
-    a, a:visited { color: #444 !important; text-decoration: underline; }
-}
+.printer_friendly * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; }
+.printer_friendly a, a:visited { color: #444 !important; text-decoration: underline; }
+
 .noprint{display:none}
 
 /* 
