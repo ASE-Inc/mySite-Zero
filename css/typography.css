@@ -1,3 +1,15 @@
+
+@font-face {
+    font-family: 'CC-ICONS';
+    font-style: normal;
+    font-weight: normal;
+    src: url('http://mirrors.creativecommons.org/presskit/cc-icons.ttf') format('truetype');
+}
+
+span.cc {
+    font-family: 'CC-ICONS';
+    color: #ABB3AC;
+}
 /* GENERAL */
 #typography { margin: 0; background-color: #98d530; background-image: -webkit-gradient(linear, left bottom, left top, color-stop(1, rgb(148,209,42)), color-stop(0, rgb(155,215,51))); background-image: -moz-radial-gradient(rgb(155,215,51), rgb(148,209,42)); }
 #typography #controls { position: relative; float: left; opacity: 1; width: 220px; height: 539px; overflow: hidden; -webkit-transition: opacity 0.2s linear; -webkit-transform: translateZ(0); -webkit-user-select: none; }
