@@ -35,9 +35,11 @@ dwsync.xml
 .hg
 .svn
 .CVS
-intermediate
-publish
 .idea
+
+intermediate/
+node_modules/
+.c9revisions/
 
 # build script local files
 build/buildinfo.properties
