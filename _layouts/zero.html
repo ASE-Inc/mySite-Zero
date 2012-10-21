@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]>     <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet.type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie6 lt-ie9 lt-ie8 lt-ie7 oldie"><![endif]-->
-<!--[if IE 7 ]>        <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet.type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie7 lt-ie9 lt-ie8 oldie"><![endif]-->
-<!--[if IE 8 ]>        <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet.type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie8 lt-ie9 oldie"><![endif]-->
-<!--[if IEMobile 7 ]>  <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet.type }}" prefix="og: http://ogp.me/ns#" class="no-js loading iem7"> <![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile) ]><!--> <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet.type }}" prefix="og: http://ogp.me/ns#" class="no-js loading animations-enable"><!--<![endif]-->
+<!--[if lt IE 7 ]>     <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet_type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie6 lt-ie9 lt-ie8 lt-ie7 oldie"><![endif]-->
+<!--[if IE 7 ]>        <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet_type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie7 lt-ie9 lt-ie8 oldie"><![endif]-->
+<!--[if IE 8 ]>        <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet_type }}" prefix="og: http://ogp.me/ns#" class="no-js loading ie8 lt-ie9 oldie"><![endif]-->
+<!--[if IEMobile 7 ]>  <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet_type }}" prefix="og: http://ogp.me/ns#" class="no-js loading iem7"> <![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile) ]><!--> <html lang="en" itemscope itemtype="http://schema.org/{{ page.snippet_type }}" prefix="og: http://ogp.me/ns#" class="no-js loading animations-enable"><!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
@@ -12,7 +12,6 @@
         <meta name="author" content="Abhishek Munie"/>
         <link type="text/plain" rel="author" href="/humans.txt"/>
         <meta name="viewport" content="width=device-width"/>
-        <meta name="viewport" content="target-densitydpi=device-dpi"/>
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta http-equiv="cleartype" content="on">
@@ -25,9 +24,9 @@
         <link rel="index" href="sitemap.xml"/>
         <link type="image/x-icon" href="favicon.ico" rel="shortcut icon"/>
         <link type="image/png" href="favicon.png" rel="icon"/>
-        <link rel="alternate" type="application/rss+xml" title="Page RSS" href="{{ page.rss_url }}"/>
+        {% if page.rss_url %}<link rel="alternate" type="application/rss+xml" title="Page RSS" href="{{ page.rss_url }}"/>{% endif %}
         <link rel="search" type="application/opensearchdescription+xml" href="/searchDescription.xml" title="abhishekmunie.com"/>
-        {% if page.publisher %}<link rel="publisher" href="{{ site.publisher }}"/>{% endif %}
+        {% if site.publisher %}<link rel="publisher" href="{{ site.publisher }}"/>{% endif %}
 
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -36,90 +35,91 @@
         <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png" />
         <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png"/>
-        <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
-        <!--
-        <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
-        -->
-
-        <!--Facebook & OpenGraph-->
+        
         {% unless page.og.title %}<meta property="og:title" content="{{ page.title }}"/>{% endunless %}
+        
+        <!--Site: Facebook, OpenGraph & +Snippet-->
+        {% for property in site.og %}
+        {% unless page.og[property[0]] %}<meta property="og:{{ property[0] }}" content="{{ property[1]] }}"/>{% endunless %}
+        {% endfor %}
+        {% for property in site.fb %}
+        {% unless page.fb[property[0]] %}<meta property="fb:{{ property[0] }}" content="{{ property[1]] }}"/>{% endunless %}
+        {% endfor %}
+        {% for property in site.snippet %}
+        {% unless page.snippet[property[0]] %}<meta itemprop="{{ property[0] }}" content="{{ property[1]] }}"/>{% endunless %}
+        {% endfor %}
+        
+        <!--Page: Facebook, OpenGraph & +Snippet-->
         {% for property in page.og %}
         <meta property="og:{{ property[0] }}" content="{{ property[1]] }}"/>
         {% endfor %}
         {% for property in page.fb %}
         <meta property="fb:{{ property[0] }}" content="{{ property[1]] }}"/>
         {% endfor %}
-        <!--Facebook & OpenGraph-->
-        <!--+Snippet-->
         {% for property in page.snippet %}
         <meta itemprop="{{ property[0] }}" content="{{ property[1]] }}"/>
         {% endfor %}
-        <meta itemprop="name" content="Abhishek Munie"/>
-        <meta itemprop="description" content=""/>
-        <meta itemprop="image" content="{{ page.og_image }}"/>
-        <!--+Snippet-->
 
         {% include heads.html %}
         
         <!--<link href="/css/fonts/fonts.css" rel="stylesheet" type="text/css"/>-->
-        <link rel="stylesheet" href="//css.abhishekmunie.com/main000.min.css" type="text/css" media="handheld, all"/>
+        <link rel="stylesheet" href="{{ site.css.main }}" type="text/css" media="handheld, all"/>
         <style type="text/css" media="print, screen and (min-width: 481px)">
             /*<![CDATA[*/
-            @import url("//css.abhishekmunie.com/advanced000.min.css");
+            @import url("{{ site.css.advanced }}");
             /*]]>*/
         </style>
-        <link href="//css.abhishekmunie.com/main000.min.css" rel="stylesheet" type="text/css" media="handheld, only screen and (max-device-width: 480px)"/>
+        <link href="{{ site.css.main }}" rel="stylesheet" type="text/css" media="handheld, only screen and (max-device-width: 480px)"/>
 
-        {% include css.html %}
+        {% for css in site.import.css %}
+        <link rel="stylesheet" href="{{ css[1].url }}" type="text/css" media="{{ css[1].media }}"/>
+        {% endfor %}
 
-        <script src="//js.abhishekmunie.com/libs/modernizr.js" type="text/javascript"></script>
+        <script src="{% if site.mySite_config %}{{ site.js.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
         <script>window.jQuery||document.write("\x3Cscript src='//js.abhishekmunie.com/libs/jquery.min.js'\x3e\x3C/script\x3e")</script>
         
         <script type="text/javascript">
-            var mySite_config={
+            var mySite_config = $.extend(true, {
                 urls:{
                     domain:location.protocol+'//'+location.hostname+'/',
                     resource:location.protocol+'//'+location.hostname+'/'
                 },
-                {% if site.mySite_config %}
-                site.mySite_config,
-                {% endif %}
                 twitter_streams:[],
                 flickr_photostreams:[]
-            };
+            }, {% if site.mySite_config %}{{ site.mySite_config }}{% else %}{}{% endif %});
             window.___gcfg={
                 lang:'en-US',
                 parsetags:'explicit'
             };
-            var _gaq=_gaq||[];
-            _gaq.push(['_setAccount',mySite_config.google.analyticsID],['_trackPageview'],['_trackPageLoadTime']);
-            var addthis_config={"data_track_clickback":true,pubid:mySite_config.addThis.id};
+            pubid:mySite_config.addThis && var addthis_config={"data_track_clickback":true, pubid:mySite_config.addThis.id};
 
             window.mySite || (mySite = {});
-            mySite.importScript || (mySite.importScript = function(src, defer, id, callback){
+            mySite.importScript || (mySite.importScript = function(src, defer, id, callback) {
                 var sp=document.createElement('script');sp.type="text/javascript";sp.src=src;sp.async=true;
-                id&&(sp.id=id);
-                defer&&(sp.defer="defer");
-                callback&&(sp.onload = sp.onreadystatechange = function() {
+                id && (sp.id=id);
+                defer && (sp.defer="defer");
+                callback && (sp.onload = sp.onreadystatechange = function() {
                     var rs = this.readyState;
                     if (rs && rs != 'complete' && rs != 'loaded') return;
                     try { callback(); } catch (e) {console.error(e)}
                 });
                 var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(sp,s);
             });
-            mySite.importScript('//js.abhishekmunie.com/main000.min.js');
-            //Google Web Analytics
+            {% for js in site.import.js %}
+            mySite.importScript({% if js[1].url %}{{ js[1].url }}{% else %}{{ js[1] }}{% endif %}, {% if js[1].defer %}{{ js[1].defer }}{% else %}false{% endif %}, {% if js[0] %}{{ js[0] }}{% else %}null{% endif %}, {% if js[1].callback %}{{ js[1].callback }}{% else %}null{% endif %});
+            {% endfor %}
+            {% if mySite_config.google and mySite_config.google.analytics %}
             var _gaq=_gaq||[];
+            _gaq.push(['_setAccount',mySite_config.google.analytics.id],['_trackPageview'],['_trackPageLoadTime']);
             mySite.importScript(('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js');
+            {% endif %}
         </script>
-
-        {% include js.html %}
     </head>
     <body>
         <!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-        <![endif]--><div id="fb-root" style="display:block;"></div>
+        <![endif]-->{% if mySite_config.facebook %}<div id="fb-root" style="display:block;"></div>{% endif %}
         {{ content }}
         <div id="preloads"></div>
     </body>
