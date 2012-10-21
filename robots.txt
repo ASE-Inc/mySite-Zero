@@ -1,8 +1,0 @@
-# Notice: if you would like to crawl this site you can
-# contact us here: 
-
-User-agent: *
-Allow: /
-
-# E-mail  if you are authorized to access these and are getting denied.
-Sitemap: /sitemap.xml
