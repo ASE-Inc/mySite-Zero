@@ -39,9 +39,14 @@ Anyone and everyone is welcome to [contribute](https://github.com/mySite/mySite-
 * Web: http://abhishekmunie.com/mySite/Zero
 * Docs: https://github.com/abhishekmunie/mySite-Zero/wiki
 
-## [HTML5 Boilerplate](http://html5boilerplate.com)
+## [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate)
 
 This project is build on top of HTML5 Boilerplate, which is a professional front-end template that helps you build fast, robust, adaptable, and future-proof websites. Spend more time developing and less time reinventing the wheel.
+
+
+## [Jekyll](https://github.com/mojombo/jekyll)
+
+This project is powered by Jekyll.
 
 ## License
 
