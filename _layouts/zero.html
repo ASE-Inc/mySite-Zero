@@ -71,12 +71,19 @@
     <script>window.jQuery||document.write("\x3Cscript src='//js.abhishekmunie.com/libs/jquery.min.js'\x3e\x3C/script\x3e")</script>
     <script type="text/javascript">
       var mySite_config = {% if site.mySite_config %}JSON.parse('{{ site.mySite_config }}'.replace(/=>/g,":")){% else %}{}{% endif %};
-      {% if site.mySite_config.addThis %}var addthis_config={"data_track_clickback":true,pubid:mySite_config.addThis.id};{% endif %}
+
+      {% if site.mySite_config.addThis %}
+      var addthis_config = {"data_track_clickback": true, pubid: mySite_config.addThis.id};
+      {% endif %}
+
       window.mySite || (mySite = {});
       mySite.importScript || (mySite.importScript = function(src, defer, id, callback) {
-        var sp=document.createElement('script');sp.type="text/javascript";sp.src=src;sp.async=true;
-        id && (sp.id=id);
-        defer && (sp.defer="defer");
+        var sp = document.createElement('script');
+        sp.type = "text/javascript";
+        sp.src = src;
+        sp.async = true;
+        id && (sp.id = id);
+        defer && (sp.defer = "defer");
         callback && (sp.onload = sp.onreadystatechange = function() {
           var rs = this.readyState;
           if(rs && rs != 'complete' && rs != 'loaded') return;
@@ -84,10 +91,20 @@
         });
         var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(sp,s);
       });
-      {% for js in site.imports.js %}mySite.importScript('{% if js[1].url %}{{ js[1].url }}{% else %}{{ js[1] }}{% endif %}', {% if js[1].defer %}{{ js[1].defer }}{% else %}false{% endif %}, '{% if js[1].id %}{{ js[1].id }}{% else %}{{ js[0] }}{% endif %}', {% if js[1].callback %}{{ js[1].callback }}{% else %}null{% endif %});{% endfor %}
-      {% if site.mySite_config.google and site.mySite_config.google.analytics %}var _gaq=_gaq||[];
-      _gaq.push(['_setAccount',mySite_config.google.analytics.id],['_trackPageview'],['_trackPageLoadTime']);
-      mySite.importScript(('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js');{% endif %}
+
+      {% for js in site.imports.js %}
+      mySite.importScript(
+        '{% if js[1].url %}{{ js[1].url }}{% else %}{{ js[1] }}{% endif %}',
+        {% if js[1].defer %}{{ js[1].defer }}{% else %}false{% endif %},
+       '{% if js[1].id %}{{ js[1].id }}{% else %}{{ js[0] }}{% endif %}',
+        {% if js[1].callback %}{{ js[1].callback }}{% else %}null{% endif %});
+      {% endfor %}
+
+      {% if site.mySite_config.google and site.mySite_config.google.analytics %}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', mySite_config.google.analytics.id], ['_trackPageview'], ['_trackPageLoadTime']);
+      mySite.importScript(('https:'==document.location.protocol ?'https://ssl' :'http://www') + '.google-analytics.com/ga.js');
+      {% endif %}
     </script>
   </head>
     <body>
