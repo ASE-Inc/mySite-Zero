@@ -62,17 +62,8 @@
 
     {% include heads.html %}
     
-    <!--<link href="/css/fonts/fonts.css" rel="stylesheet" type="text/css"/>-->
-    <link rel="stylesheet" href="{{ site.css.main }}" type="text/css" media="handheld, all"/>
-    <style type="text/css" media="print, screen and (min-width: 481px)">
-        /*<![CDATA[*/
-        @import url("{{ site.css.advanced }}");
-        /*]]>*/
-    </style>
-    <link href="{{ site.css.main }}" rel="stylesheet" type="text/css" media="handheld, only screen and (max-device-width: 480px)"/>
-
-    {% for css in site.import.css %}
-    <link rel="stylesheet" href="{{ css[1].url }}" type="text/css" media="{{ css[1].media }}"/>
+    {% for css in site.imports.css %}
+    <link rel="stylesheet" href="{{ css[1].url }}" {% if css[1].media %}media="{{ css[1].media }}"{% endif %}/>
     {% endfor %}
 
     <script src="{% if site.mySite_config %}{{ site.js.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
