@@ -66,25 +66,12 @@
     <link rel="stylesheet" href="{{ css[1].url }}" {% if css[1].media %}media="{{ css[1].media }}"{% endif %}/>
     {% endfor %}
 
-    <script src="{% if site.mySite_config %}{{ site.js.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
+    <script src="{% if site.imports.modernizr %}{{ site.imports.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
-    <script>window.jQuery||document.write("\x3Cscript src='//js.abhishekmunie.com/libs/jquery.min.js'\x3e\x3C/script\x3e")</script>
-    
     <script type="text/javascript">
-      var mySite_config = $.extend(true, {
-        urls:{
-          domain:location.protocol+'//'+location.hostname+'/',
-          resource:location.protocol+'//'+location.hostname+'/'
-        },
-        twitter_streams:[],
-        flickr_photostreams:[]
-      }, {% if site.mySite_config %}{{ site.mySite_config.to_json }}{% else %}{}{% endif %});
-      window.___gcfg={
-        lang:'en-US',
-        parsetags:'explicit'
-      };
-      pubid:mySite_config.addThis && var addthis_config={"data_track_clickback":true, pubid:mySite_config.addThis.id};
-
+      window.jQuery||document.write("\x3Cscript src='//js.abhishekmunie.com/libs/jquery.min.js'\x3e\x3C/script\x3e")
+      var mySite_config = {% if site.mySite_config %}JSON.parse('{{ site.mySite_config }}'.replace('=>',':')){% else %}{}{% endif %};
+      {% if site.mySite_config.addThis %}var addthis_config={"data_track_clickback":true,pubid:mySite_config.addThis.id};{% endif %}
       window.mySite || (mySite = {});
       mySite.importScript || (mySite.importScript = function(src, defer, id, callback) {
         var sp=document.createElement('script');sp.type="text/javascript";sp.src=src;sp.async=true;
@@ -92,25 +79,21 @@
         defer && (sp.defer="defer");
         callback && (sp.onload = sp.onreadystatechange = function() {
           var rs = this.readyState;
-          if (rs && rs != 'complete' && rs != 'loaded') return;
-          try { callback(); } catch (e) {console.error(e)}
+          if(rs && rs != 'complete' && rs != 'loaded') return;
+          try{ callback(); } catch(e) {console.error(e)}
         });
         var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(sp,s);
       });
-      {% for js in site.import.js %}
-      mySite.importScript('{% if js[1].url %}{{ js[1].url }}{% else %}{{ js[1] }}{% endif %}', {% if js[1].defer %}{{ js[1].defer }}{% else %}false{% endif %}, '{% if js[1].id %}{{ js[1].id }}{% else %}{{ js[0] }}{% endif %}', {% if js[1].callback %}{{ js[1].callback }}{% else %}null{% endif %});
-      {% endfor %}
-      {% if site.mySite_config.google and site.mySite_config.google.analytics %}
-      var _gaq=_gaq||[];
+      {% for js in site.imports.js %}mySite.importScript('{% if js[1].url %}{{ js[1].url }}{% else %}{{ js[1] }}{% endif %}', {% if js[1].defer %}{{ js[1].defer }}{% else %}false{% endif %}, '{% if js[1].id %}{{ js[1].id }}{% else %}{{ js[0] }}{% endif %}', {% if js[1].callback %}{{ js[1].callback }}{% else %}null{% endif %});{% endfor %}
+      {% if site.mySite_config.google and site.mySite_config.google.analytics %}var _gaq=_gaq||[];
       _gaq.push(['_setAccount',mySite_config.google.analytics.id],['_trackPageview'],['_trackPageLoadTime']);
-      mySite.importScript(('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js');
-      {% endif %}
+      mySite.importScript(('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js');{% endif %}
     </script>
   </head>
     <body>
       <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-      <![endif]-->{% if mySite_config.facebook %}<div id="fb-root" style="display:block;"></div>{% endif %}
+      <![endif]-->{% if site.mySite_config.facebook %}<div id="fb-root" style="display:block;"></div>{% endif %}
       {{ content }}
       <div id="preloads" class="hidden"></div>
     </body>
