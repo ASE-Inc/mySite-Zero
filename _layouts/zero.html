@@ -63,7 +63,7 @@
     {% include heads.html %}
     
     {% for css in site.imports.css %}
-    <link rel="stylesheet" href="{{ css[1].url }}" {% if css[1].media %}media="{{ css[1].media }}"{% endif %}/>
+    <link rel="stylesheet" href="{% if css[1].url %}{{ css[1].url }}{% else %}{{ css[1] }}{% endif %}" {% if css[1].media %}media="{{ css[1].media }}"{% endif %}/>
     {% endfor %}
 
     <script src="{% if site.imports.modernizr %}{{ site.imports.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
