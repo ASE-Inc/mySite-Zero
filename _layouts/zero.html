@@ -20,12 +20,12 @@
     <meta name="synonyms" content="{{ page.synonyms }}"/>
     <meta name="keywords" content="{{ page.keywords }}"/>
     <meta name="description" content="{{ page.description }}"/>
-    <link rel="home" href="http://abhishekmunie.com/"/>
+    {% if site.home %}<link rel="home" href="{{ site.home }}"/>{% endif %}
     <link rel="index" href="sitemap.xml"/>
     <link type="image/x-icon" href="favicon.ico" rel="shortcut icon"/>
     <link type="image/png" href="favicon.png" rel="icon"/>
     {% if page.rss_url %}<link rel="alternate" type="application/rss+xml" title="Page RSS" href="{{ page.rss_url }}"/>{% endif %}
-    <link rel="search" type="application/opensearchdescription+xml" href="/searchDescription.xml" title="abhishekmunie.com"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="/searchDescription.xml" title="{{ site.search_title }}"/>
     {% if site.publisher %}<link rel="publisher" href="{{ site.publisher }}"/>{% endif %}
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -68,7 +68,7 @@
 
     <script src="{% if site.imports.modernizr %}{{ site.imports.modernizr }}{% else %}//js.mysite-cdn.tk/libs/modernizr.js{% endif %}" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
-    <script>window.jQuery||document.write("\x3Cscript src='//js.abhishekmunie.com/libs/jquery.min.js'\x3e\x3C/script\x3e")</script>
+    <script>window.jQuery||document.write("\x3Cscript src='//js.mysite-cdn.tk/libs/jquery.min.js'\x3e\x3C/script\x3e")</script>
     <script type="text/javascript">
       var mySite_config = {% if site.mySite_config %}JSON.parse('{{ site.mySite_config }}'.replace(/=>/g,":")){% else %}{}{% endif %};
 
